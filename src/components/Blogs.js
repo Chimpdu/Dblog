@@ -1,38 +1,14 @@
-import React, { useState } from 'react';
+import Blog from './Blog';
 
-function Blogs({ blogs, deleteBlog }) {
-    const [hoveredBlogId, setHoveredBlogId] = useState(null);
-
-    const onMouseOver = (id) => {
-        setHoveredBlogId(id);
-    };
-
-    const onMouseLeave = () => {
-        setHoveredBlogId(null);
-    };
+function Blogs({ blogs, deleteBlog, updateLikes}) {
+    
 
     return (
         <div className='blogs'>
-            {blogs.map((blog) => (
-                <div 
-                    className="blog-card" 
-                    key={blog.id} 
-                    onMouseOver={() => onMouseOver(blog.id)} 
-                    onMouseLeave={onMouseLeave}
-                >
-                    <h2>{blog.title}</h2>
-                    <p>{blog.body}</p>
-                    <p>{blog.author}</p>
-                    {hoveredBlogId === blog.id && (
-                        <button 
-                            className='waves-effect waves-light btn blog-del-btn' 
-                            onClick={() => deleteBlog(blog.id)}
-                        >
-                            Delete
-                        </button>
-                    )}
-                </div>
-            ))}
+            {blogs.map((blog)=> {
+                return (<Blog key={blog.id} blog={blog} deleteBlog={deleteBlog} updateLikes={updateLikes}/>)
+            })}
+           
         </div>
     );
 }

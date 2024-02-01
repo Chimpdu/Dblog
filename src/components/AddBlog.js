@@ -12,7 +12,7 @@ function AddBlog({addBlog}) {
         event.preventDefault();
         /* At this moment id is mocked using a random number */
         const id = Math.floor(Math.random()*1000000+1000);
-        const blog = {title, body: post, author, id};
+        const blog = {title, body: post, author, id, likes:0};
         addBlog(blog);
         setAuthor("");
         setTitle("");

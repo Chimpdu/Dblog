@@ -9,15 +9,23 @@ import { useState } from 'react';
 
 function App() {
   const [blogs, setBlogs] = useState([
-    { title: 'Site building!', body: 'lorem ipsum...', author: 'Yuxin', id: 1 },
-    { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-    { title: 'Is it done?', body: 'lorem ipsum...', author: 'Yuxin', id: 3 }
+    { title: 'Site building!', body: 'lorem ipsum...', author: 'Yuxin', id: 1, likes: 0},
+    { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2, likes: 0 },
+    { title: 'Is it done?', body: 'lorem ipsum...', author: 'Yuxin', id: 3, likes: 0 }
   ]);
+
 const deleteBlog = (id) => {
     setBlogs(blogs.filter((blog)=>{return blog.id !== id}))
 }
 const addBlog = (blog) => {
   setBlogs([...blogs, blog]);
+}
+const updateLikes = (blog) => {
+  blogs.forEach((element) => {
+    if (element.id === blog.id) {
+      element.likes = blog.likes;
+    }
+  });
 }
 
   return (
@@ -25,11 +33,10 @@ const addBlog = (blog) => {
       <div className="App">
         <Nav/>
         <Routes>
-          <Route path='/' element={<Home blogs={blogs} deleteBlog={deleteBlog}/>}></Route>
+          <Route path='/' element={<Home blogs={blogs} deleteBlog={deleteBlog} updateLikes={updateLikes}/>}></Route>
           <Route path='/about' element={<About/>}></Route>
           <Route path ='/add' element={<AddBlog addBlog={addBlog}/>}></Route>
-        </Routes>
-       
+        </Routes> 
       </div>
     </Router>
   );

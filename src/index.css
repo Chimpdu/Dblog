@@ -37,7 +37,9 @@ code {
 .blog-card:hover {
   transform: scale(1.05); /* Scales up the card slightly on hover */
 }
-
+.like_button {
+  text-align: right;
+}
 @media (min-width: 1025px) {
   /* For large screens */
   .blogs {
@@ -68,17 +70,20 @@ code {
 }
 
 /* Styling for the body text */
-.blog-card p {
+.blog-body p {
   color: #666; /* Medium grey color */
   line-height: 1.6; /* More readable line height */
 }
 
 /* Styling for the author name */
-.blog-card p:nth-child(3){
+.blog-author{
   text-align: right;
   color: #333;
   font-weight: bold;
   margin-top: 20px;
+}
+.like-counter {
+  margin-left: 90%;
 }
 .secondary-header {
   text-align: left;

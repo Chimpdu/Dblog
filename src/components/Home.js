@@ -1,15 +1,7 @@
 import React from 'react'
 import Blogs from './Blogs'
-import { useState } from 'react'
-function Home() {
-    const [blogs, setBlogs] = useState([
-        { title: 'Site building!', body: 'lorem ipsum...', author: 'Yuxin', id: 1 },
-        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-        { title: 'Is it done?', body: 'lorem ipsum...', author: 'Yuxin', id: 3 }
-      ]);
-    const deleteBlog = (id) => {
-        setBlogs(blogs.filter((blog)=>{return blog.id !== id}))
-    }
+function Home({blogs, deleteBlog}) {
+    
   return (
     <div className='home'>
       <h1>Welcome to Dlog</h1>

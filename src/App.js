@@ -16,6 +16,10 @@ function App() {
 const deleteBlog = (id) => {
     setBlogs(blogs.filter((blog)=>{return blog.id !== id}))
 }
+const addBlog = (blog) => {
+  setBlogs([...blogs, blog]);
+}
+
   return (
     <Router>
       <div className="App">
@@ -23,7 +27,7 @@ const deleteBlog = (id) => {
         <Routes>
           <Route path='/' element={<Home blogs={blogs} deleteBlog={deleteBlog}/>}></Route>
           <Route path='/about' element={<About/>}></Route>
-          <Route path ='/add' element={<AddBlog/>}></Route>
+          <Route path ='/add' element={<AddBlog addBlog={addBlog}/>}></Route>
         </Routes>
        
       </div>

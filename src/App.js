@@ -6,6 +6,8 @@ import About from './components/About';
 import AddBlog from './components/AddBlog';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { useState } from 'react';
+import { LanguageProvider } from './LanguageContext';
+import { Suspense } from 'react';
 
 function App() {
   const [blogs, setBlogs] = useState([
@@ -29,16 +31,20 @@ const updateLikes = (blog) => {
 }
 
   return (
-    <Router>
-      <div className="App">
-        <Nav/>
-        <Routes>
-          <Route path='/' element={<Home blogs={blogs} deleteBlog={deleteBlog} updateLikes={updateLikes}/>}></Route>
-          <Route path='/about' element={<About/>}></Route>
-          <Route path ='/add' element={<AddBlog addBlog={addBlog}/>}></Route>
-        </Routes> 
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Suspense fallback="loading">
+        <Router>
+          <div className="App">
+            <Nav/>
+            <Routes>
+              <Route path='/' element={<Home blogs={blogs} deleteBlog={deleteBlog} updateLikes={updateLikes}/>}></Route>
+              <Route path='/about' element={<About/>}></Route>
+              <Route path ='/add' element={<AddBlog addBlog={addBlog}/>}></Route>
+            </Routes> 
+          </div>
+        </Router>
+      </Suspense>
+    </LanguageProvider>
   );
 }
 
